@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "headphones_analysis",
+            "database": "${workspaceFolder:project1}/amazon_sales.db"
+        }
+    ]
+}
