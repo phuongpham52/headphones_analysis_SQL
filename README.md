@@ -1,0 +1,2 @@
+Global Headphones Market Analysis (SQL)
+This project performs an exploratory data analysis (EDA) of the Global Headphones Market dataset. By utilizing SQL queries, I have uncovered insights regarding brand performance, pricing trends, and customer reception within the headphone industry.
