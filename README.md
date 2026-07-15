@@ -25,7 +25,7 @@ FROM headphones
 ORDER BY "Avg Rating" DESC
 LIMIT 10;
 ```
-Result:
+Result:![alt text](image.png)
 
 Top 10 highest reviewed headphones
 ```mysql
