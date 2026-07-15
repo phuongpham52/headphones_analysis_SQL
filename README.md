@@ -28,6 +28,7 @@ LIMIT 10;
 Result:
 
 Top 10 highest reviewed headphones
+```mysql
 SELECT Brand,
 Model,
 "Avg Rating",
@@ -35,7 +36,7 @@ Model,
 FROM headphones
 ORDER BY "Review Count" DESC
 LIMIT 10;
-
+```
 Result:
 
 Insight: These queries distinguish between products that are critically acclaimed versus those that are mass-market favorites.
@@ -44,13 +45,14 @@ Insight: These queries distinguish between products that are critically acclaime
 Goal: Understand how different brands position themselves in terms of quality and price.
 
 Average rating by brand
+```mysql
 SELECT Brand,
 round(AVG("Avg Rating"), 2) AS "Average Rating",
 count(*) AS "Number of Models"
 FROM headphones
 GROUP BY Brand
 ORDER BY "Average Rating" DESC;
-
+```
 Result:
 
 Insight: This analysis helps identify which brands consistently deliver high-quality audio experiences compared to their average price point.
@@ -59,13 +61,14 @@ Insight: This analysis helps identify which brands consistently deliver high-qua
 Goal: How does price bracket influence the user-perceived quality?
 
 Average price by brand
+```mysql
 SELECT Brand,
 round(AVG("Price (USD)"), 2) AS "Average Price",
 count(*) AS "Number of Models"
 FROM headphones
 GROUP BY Brand
 ORDER BY "Average Price" DESC;
-
+```
 Result:
 
 4. Segmented Performance: Top 5 Headphones by Primary Use
@@ -73,6 +76,7 @@ Goal: Identify the leaders in specific categories (e.g., Gaming, Studio, Travel)
 Insight: This query uses ROW_NUMBER() to isolate the "best of the best" for each usage category, helping users quickly find the top recommended gear for their specific lifestyle.
 
 Top 5 best rated headphones by primary use
+```mysql
 SELECT "Primary Use",
   brand,
   Model,
@@ -85,13 +89,14 @@ FROM (
 ) 
 WHERE rn <= 5
 ORDER BY "Primary Use", "Average Rating" DESC; 
-
+```
 Result:
 
 5. Price Range Benchmarking
 Goal: Analyze if higher price points consistently result in better user satisfaction.
 Insight: This reveals if there is a "sweet spot" for pricing, where quality peaks before diminishing returns set in.
 Average rating by price range
+```mysql
 SELECT 
     CASE 
         WHEN CAST("Price (USD)" AS REAL) < 50 THEN 'Under $50'
@@ -110,7 +115,7 @@ ORDER BY
         WHEN '$100-$199' THEN 3
         ELSE 4
     END;
-
+```
 Result:
 
 6. Within-Brand Ranking & Deviations
@@ -118,6 +123,7 @@ Goal: Identify standout models and how they compare to the brand average.
 Insight: These window functions highlight "star performers"—products that significantly outperform their brand’s average—and "underperformers" that might drag a brand’s reputation down.
 
 Ranking headphones by average rating within each brand
+```mysql
 SELECT 
     Brand,
     Model,
@@ -129,24 +135,26 @@ SELECT
     ) AS rank
 FROM headphones
 ORDER BY Brand, rank;
-
+```
 Result:
 
 7. Market Discovery: Hidden Gems & Volume Leaders
 Goal: Find high-quality products that are under-the-radar vs. the most popular brands.
 Insight: The "Hidden Gems" query helps identify high-quality products that lack the marketing budget of major brands, while the "Most Reviewed" query establishes which brands have the highest consumer engagement.
 Products with high ratings but low review counts
+```mysql
 SELECT *
 FROM headphones
 WHERE "Avg Rating" >= 4.8
 AND "Review Count" < 400;
-
+```
 Result:
 
 8. Market Volume: Top 5 Most Reviewed Brands
 Goal: Identify which brands dominate the market in terms of consumer engagement and review volume.
 
 Top 5 most reviewed brand
+```mysql
 SELECT Brand,
 "Avg Rating",
        COUNT(*) AS "Number of Models",
@@ -155,12 +163,13 @@ FROM headphones
 GROUP BY Brand
 ORDER BY "Total Reviews" DESC
 LIMIT 5;
-
+```
 Result:
 
 9. Variance Analysis: Performance vs. Brand Average
 Goal: Determine which specific models are "Outliers"—either significantly better or worse than the average product within their own brand.
 Difference from brand average rating
+```mysql
 SELECT 
     Model,
     Brand,
@@ -168,5 +177,5 @@ SELECT
     ROUND("Avg Rating" - AVG("Avg Rating") OVER(PARTITION BY Brand), 2) AS rating_difference
 FROM headphones
 ORDER BY ABS(rating_difference) DESC;
-
+```
 Result:
