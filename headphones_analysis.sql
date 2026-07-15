@@ -7,7 +7,7 @@ FROM headphones
 ORDER BY "Avg Rating" DESC
 LIMIT 10;
 
---top 10 highest reviewed headphones
+--Top 10 highest reviewed headphones
 SELECT Brand,
 Model,
 "Avg Rating",
@@ -53,13 +53,13 @@ SELECT
         WHEN CAST("Price (USD)" AS REAL) BETWEEN 50 AND 99.99 THEN '$50-$99'
         WHEN CAST("Price (USD)" AS REAL) BETWEEN 100 AND 199.99 THEN '$100-$199'
         ELSE '$200+'
-    END AS price_range,
-    ROUND(AVG("Avg Rating"), 2) AS average_rating,
-    COUNT(*) AS number_of_products
+    END AS "price range",
+    ROUND(AVG("Avg Rating"), 2) AS "Average Rating",
+    COUNT(*) AS "Number of Products"
 FROM headphones
-GROUP BY price_range
+GROUP BY "Price Range"
 ORDER BY 
-    CASE price_range
+    CASE "Price Range"
         WHEN 'Under $50' THEN 1
         WHEN '$50-$99' THEN 2
         WHEN '$100-$199' THEN 3
@@ -103,3 +103,4 @@ SELECT
     ROUND("Avg Rating" - AVG("Avg Rating") OVER(PARTITION BY Brand), 2) AS rating_difference
 FROM headphones
 ORDER BY ABS(rating_difference) DESC;
+

@@ -4,6 +4,7 @@ Global Headphones Market Analysis (SQL)
 This project performs an exploratory data analysis (EDA) of the Global Headphones Market dataset. By utilizing SQL queries, I have uncovered insights regarding brand performance, pricing trends, and customer reception within the headphone industry.
 
 Tools used: Excel, SQL (SQLite, SQLTools)
+Results: [Download the Data File](heaphones results.xlsx)
 
 Business Problem
 The headphone market is saturated with countless brands and models, making it difficult for consumers to identify which products offer the best value or performance. The challenge lies in navigating a vast dataset of specifications and reviews to extract meaningful patterns. My goal is to provide a data-driven guide that helps consumers make informed purchasing decisions based on price, rating, and user feedback.
