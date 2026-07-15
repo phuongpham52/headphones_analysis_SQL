@@ -16,6 +16,7 @@ SQL Analysis
 Goal: Find the best-performing models based on ratings and review volume.
 
 Top 10 Highest Rated Headphones
+```mysql
 SELECT Brand, 
 Model, 
 "Battery (hrs)",
@@ -23,7 +24,7 @@ Model,
 FROM headphones
 ORDER BY "Avg Rating" DESC
 LIMIT 10;
-
+```
 Result:
 
 Top 10 highest reviewed headphones
