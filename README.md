@@ -5,6 +5,8 @@ This project performs an exploratory data analysis (EDA) of the Global Headphone
 
 Tools used: Excel, SQL (SQLite, SQLTools)
 
+Dataset Used: (https://www.kaggle.com/datasets/maulikgajera/global-headphones-specifications-and-market-dataset)
+
 Results: [Download the Data File](./headphones_results.xlsx)
 
 Business Problem
